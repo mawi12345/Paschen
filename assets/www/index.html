@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Paschen</title>
+<script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/controller.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.waitforimages.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/menu.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/settings.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/game.js"></script>
+<link rel="stylesheet" type="text/css" href="css/main.css" media="screen"/>
+<script type="text/javascript" charset="utf-8">
+/*
+ * Start the Controller on deviceready and jQuery DOM ready
+ */
+
+var phonegapReady = false;
+var jqueryDomReady = false;
+
+function checkState() {
+	if (phonegapReady && jqueryDomReady) {
+		Controller.startup();
+	}
+}
+
+document.addEventListener("deviceready", function(){
+	phonegapReady = true;
+	checkState();
+}, false);
+
+$(document).ready(function(){
+	if (window.location.href.indexOf('?') != -1) {
+		Controller.enableFake();
+		Controller.startup();
+	} else {
+		jqueryDomReady = true;
+		checkState();
+	}
+	
+});
+
+
+
+</script>
+</head>
+<body>
+<div id="lodingscreen"></div>
+</body>
+</html>
